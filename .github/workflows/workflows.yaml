@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:  
+  name: cd-pipeline
+spec:
+  workspaces:
+    - name: pipeline-workspace
+  tasks:
+    - name: tests
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace          
+      taskRef:
+        name: nose
